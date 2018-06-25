@@ -22,7 +22,7 @@ int s;
 int E=0;
 int Z=0;
 int contatore;
-int mode=1; //variabile per le modalità --> 1 per C.A. | 2 per C.A.+memoria | 3 per marcatempo
+int state=0;
 RFID RC522(SDA_DIO, RESET_DIO);
 File ingressi;
 char ora;
@@ -113,7 +113,7 @@ boolean verificaCodice(String codiceLetto, String codiceAutorizzato){
 void setup(){ 
   pinMode(SS, OUTPUT);
   pinMode(CS, OUTPUT);
-  pinMode(5, INPUT_PULLUP);
+  pinMode(6, INPUT_PULLUP);
   Serial.println("initialization done.");
   Serial.begin(9600);
   Wire.begin();
@@ -151,11 +151,10 @@ inizio();
       codiceLetto+= String (RC522.serNum[i],HEX);
       Wire.write(readCard[i]);
       codiceLetto.toUpperCase();
-      
-
-    }Wire.endTransmission();
-    
-    if(5==LOW){
+    }
+    Wire.endTransmission();
+    delay(100);
+    if(digitalRead(6)){
       tessera_si();
     }else{
      
