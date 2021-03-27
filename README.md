@@ -1,6 +1,6 @@
 # Sistema Controllo Accessi v. 1.0
 
------------ Progetto per Esame di Stato -----------
+*** Progetto per Esame di Stato ***
 
 Mattia Scandale 2018
 
